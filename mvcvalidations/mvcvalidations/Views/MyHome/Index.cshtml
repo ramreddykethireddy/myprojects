@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<script src="~/Scripts/jquery-2.1.1.js"></script>
+<script src="../../Scripts/jquery-2.1.1.js" type="text/javascript"></script>
+<script src="../../Scripts/jquery-ui-2.1.1.js" type="text/javascript"></script>
+<link href="../../Content/themes/base/jquery.ui.all.css" rel="stylesheet" type="text/css" />
+
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script>
+    $(function () {
+
+        $('#mysubmit').click(function () {
+            debugger;
+            var tt = isValidate();
+        });
+
+
+        debugger;     
+        $.validator.setDefaults({            
+            errorElement: "em"
+        });
+
+       
+        function isValidate() {
+            $('.first-form').validate({
+                rules: {
+                    name: {
+                        required: true
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    }
+                },
+                messages: {
+                    name: { required: 'name is required!' }
+                },
+                success: function () { return true; }
+
+            });
+        }
+
+
+    });
+</script>
+
+<h2>Index</h2>
+
+  <form class="first-form" >
+    <label for="name">Name</label> <br>
+    <input type="text" id="name" name="name"/> <br>
+    <label for="email">Email</label> <br>
+    <input type="text" id="email" name="email"/> <br>
+    <button type="submit" id="mysubmit">submit</button> <br>
+  </form>

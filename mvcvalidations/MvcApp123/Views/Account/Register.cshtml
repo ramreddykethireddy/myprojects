@@ -1,0 +1,58 @@
+﻿@model MvcApp123.Models.RegisterModel
+@{
+    ViewBag.Title = "Register";
+}
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>Create a new account.</h2>
+</hgroup>
+
+@using (Html.BeginForm(new { id = "registrationform" }))
+{
+    
+    @*@Html.AntiForgeryToken()
+    @Html.ValidationSummary()  *@
+
+   <fieldset>
+        <legend>Registration Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName)
+                @Html.ValidationMessageFor(m => m.UserName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.ConfirmPassword)
+                @Html.PasswordFor(m => m.ConfirmPassword)
+            </li>
+        </ol>
+        <input type="submit" value="Register" />
+    </fieldset>
+}
+
+@section Scripts {       
+    @Scripts.Render("~/bundles/jqueryval")
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        debugger;
+        $.validator.unobtrusive.parse($("#registrationform"));
+    });
+
+    function onSubmit(e) {
+        debugger;
+    $("#registrationform").validate(); // this will validate the form and show the validation messages
+    if($("#registrationform").valid()) {
+        $("#registrationform").submit(); // submits the form
+  }
+  return false;//prevent default submit of form by returning false.
+  //also e.preventDefault() can be used.
+}
+</script>
+
+}

@@ -1,0 +1,30 @@
+﻿<div id="banner">Country List</div>
+<div>
+    <input data-bind="value: NewCountry.name" />
+    <button data-bind="click: AddCountry">Add Country</button>
+</div>
+<table>
+    <thead>
+        <tr><th>Name</th><th></th></tr>
+    </thead>
+    <tbody data-bind="foreach: countries">
+        <tr>
+            <td>
+                <span data-bind="text: name, visible: !isEdit()"></span>
+                <input type="hidden" data-bind="value: id"/>
+                <input data-bind="value: name, visible: isEdit" />
+            </td>
+            <td>
+                <div data-bind="visible: !isEdit()">
+                    <button data-bind="click: $root.EditCountry">Edit</button>
+                    <button data-bind="click: $root.DeleteCountry">Delete</button>
+                </div>
+                            
+                <div data-bind="visible: isEdit">
+                    <button data-bind="click: $root.UpdateCountry">Update</button>
+                    <button data-bind="click: $root.CancelCountry">Cancel</button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
